@@ -443,6 +443,7 @@
     .skills-wrapper, .contact-inner { grid-template-columns: 1fr; gap: 2rem; }
     .form-row { grid-template-columns: 1fr; }
     .nav-links { display: none; }
+    #companies .reveal > div { grid-template-columns: 1fr; }
   }
 </style>
 </head>
@@ -456,6 +457,7 @@
     <li><a href="#experience">Experience</a></li>
     <li><a href="#skills">Skills</a></li>
     <li><a href="#projects">Projects</a></li>
+    <li><a href="#companies">Companies</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
   <a href="https://api.whatsapp.com/send?phone=923410637563" target="_blank" rel="noopener noreferrer" class="nav-cta">Hire Me</a>
@@ -479,7 +481,7 @@
       <!-- ✅ REPLACE "your-photo.jpg" with your actual image filename -->
       <!-- Make sure the image file is uploaded to the same folder as this index.html on GitHub -->
       <img
-        src="umair.jpg"
+        src="your-photo.jpg"
         alt="Muhammad Umair SEO Executive"
         onerror="this.style.display='none'; this.parentElement.querySelector('.hero-fallback').style.display='flex';"
       />
@@ -672,7 +674,7 @@
     <div class="project-card">
       <div class="project-thumb g2" style="background-image:url('veltio.jpg'); background-size:cover; background-position:center; font-size:0;">WLP</div>
       <div class="project-body">
-        <div class="project-tag">SEO Optimization</div>
+        <div class="project-tag">GMB Optimization • On-Page • Off-Page • Technical SEO</div>
         <h3>Veltio Digital — White Label Marketing Agency</h3>
         <p>Handled complete white-label SEO services, including Google Business Profile optimization, on-page SEO, technical audits, and off-page strategies to improve local visibility and organic performance for a Canadian marketing agency.</p>
       </div>
@@ -680,7 +682,7 @@
     <div class="project-card">
       <div class="project-thumb g3" style="background-image:url('wiki.jpg'); background-size:cover; background-position:center; font-size:0;">WIKI</div>
       <div class="project-body">
-        <div class="project-tag">Wikipedia Pages Creations</div>
+        <div class="project-tag">Wikipedia</div>
         <h3>Wikipedia Page — Stampaprints • Hellamaid</h3>
         <p>Created fully sourced and Wikipedia policy-compliant company pages for Stampa Prints, a USA-based packaging company, and Hellamaid, a Canadian cleaning company, enhancing brand credibility, online authority, and search visibility.</p>
       </div>
@@ -708,6 +710,29 @@
         <h3>Durham Autohaus — Canadian Auto Dealership Company</h3>
         <p>Performed comprehensive SEO optimization including on-page improvements, technical SEO fixes, Core Web Vitals optimization, schema markup implementation, and off-page SEO strategies to improve search visibility and organic performance for a Canadian automotive dealership.</p>
       </div>
+    </div>
+  </div>
+</section>
+
+<!-- COMPANIES THAT WORKED -->
+<section id="companies" style="background:var(--gray-light)">
+  <div class="reveal">
+    <div class="section-label">Experience</div>
+    <h2 class="section-title">Companies that worked</h2>
+    <p class="section-desc">I've had the opportunity to work with Veltio Digital and Tri Technologies, where I supported their clients by providing comprehensive SEO services, strategic outreach, and digital marketing solutions to enhance online visibility and drive business growth.</p>
+  </div>
+  <div class="reveal" style="display:grid; grid-template-columns:1fr 1fr; gap:2.5rem;">
+    <div style="display:flex; flex-direction:column; align-items:center; gap:1.2rem;">
+      <div style="width:100%; border-radius:16px; overflow:hidden; border:1.5px solid #e5e7eb; box-shadow:0 8px 32px rgba(0,0,0,.08); transition:transform .25s, box-shadow .25s;" onmouseover="this.style.transform='translateY(-5px)';this.style.boxShadow='0 16px 48px rgba(0,0,0,.12)'" onmouseout="this.style.transform='translateY(0)';this.style.boxShadow='0 8px 32px rgba(0,0,0,.08)'">
+        <img src="tri-technologies.png" alt="Tri Technologies" style="width:100%; height:260px; object-fit:cover; object-position:center top; display:block;" />
+      </div>
+      <h3 style="font-family:var(--ff-display); font-size:1.15rem; font-weight:700; color:var(--black);">Tri Technologies</h3>
+    </div>
+    <div style="display:flex; flex-direction:column; align-items:center; gap:1.2rem;">
+      <div style="width:100%; border-radius:16px; overflow:hidden; border:1.5px solid #e5e7eb; box-shadow:0 8px 32px rgba(0,0,0,.08); transition:transform .25s, box-shadow .25s;" onmouseover="this.style.transform='translateY(-5px)';this.style.boxShadow='0 16px 48px rgba(0,0,0,.12)'" onmouseout="this.style.transform='translateY(0)';this.style.boxShadow='0 8px 32px rgba(0,0,0,.08)'">
+        <img src="veltio-digital.png" alt="Veltio Digital" style="width:100%; height:260px; object-fit:cover; object-position:center top; display:block;" />
+      </div>
+      <h3 style="font-family:var(--ff-display); font-size:1.15rem; font-weight:700; color:var(--black);">Veltio Digital</h3>
     </div>
   </div>
 </section>
