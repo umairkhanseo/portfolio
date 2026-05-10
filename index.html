@@ -35,8 +35,8 @@
   nav {
     position: fixed; top: 0; left: 0; right: 0; z-index: 100;
     display: flex; align-items: center; justify-content: space-between;
-    padding: 1.1rem 6%;
-    background: rgba(255,255,255,0.92);
+    padding: 1rem 5%;
+    background: rgba(255,255,255,0.95);
     backdrop-filter: blur(12px);
     border-bottom: 1px solid #f0f0ed;
   }
@@ -48,6 +48,8 @@
     letter-spacing: -0.5px;
   }
   .nav-logo span { color: var(--green); }
+
+  /* Desktop nav links */
   .nav-links { display: flex; gap: 2.2rem; list-style: none; }
   .nav-links a {
     font-size: .88rem; font-weight: 500; letter-spacing: .3px;
@@ -55,6 +57,7 @@
     transition: color .2s;
   }
   .nav-links a:hover { color: var(--green); }
+
   .nav-cta {
     background: var(--green); color: #fff;
     padding: .55rem 1.4rem; border-radius: 50px;
@@ -62,15 +65,71 @@
     text-decoration: none;
     transition: background .2s, transform .15s;
     display: inline-flex; align-items: center; gap: .4rem;
+    white-space: nowrap;
   }
   .nav-cta:hover { background: var(--green-dark); transform: translateY(-1px); }
+
+  /* Hamburger button */
+  .hamburger {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    cursor: pointer;
+    padding: 4px;
+    background: none;
+    border: none;
+    z-index: 200;
+  }
+  .hamburger span {
+    display: block;
+    width: 24px;
+    height: 2px;
+    background: var(--black);
+    border-radius: 2px;
+    transition: transform .3s, opacity .3s;
+  }
+  .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+  .hamburger.open span:nth-child(2) { opacity: 0; }
+  .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+  /* Mobile menu overlay */
+  .mobile-menu {
+    display: none;
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(255,255,255,0.98);
+    backdrop-filter: blur(12px);
+    z-index: 99;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+    padding: 2rem;
+  }
+  .mobile-menu.open { display: flex; }
+  .mobile-menu a {
+    font-family: var(--ff-display);
+    font-size: 1.8rem;
+    font-weight: 900;
+    color: var(--black);
+    text-decoration: none;
+    transition: color .2s;
+  }
+  .mobile-menu a:hover { color: var(--green); }
+  .mobile-menu .mobile-cta {
+    background: var(--green); color: #fff;
+    padding: .9rem 2.5rem; border-radius: 50px;
+    font-family: var(--ff-body);
+    font-size: 1rem; font-weight: 600;
+    margin-top: 1rem;
+  }
 
   /* ── HERO ── */
   .hero {
     min-height: 100vh;
     display: grid; grid-template-columns: 1fr 1fr;
     align-items: center;
-    padding: 6rem 6% 4rem;
+    padding: 7rem 6% 4rem;
     gap: 3rem;
     position: relative;
     overflow: hidden;
@@ -146,8 +205,6 @@
     overflow: hidden;
     box-shadow: 0 30px 80px rgba(105,189,39,.18), 0 8px 24px rgba(0,0,0,.08);
   }
-
-  /* ── PHOTO IMAGE ── */
   .hero-photo-wrap img {
     width: 100%;
     height: 100%;
@@ -171,7 +228,7 @@
   .stat-chip-2 { bottom: 15%; right: -30px; }
 
   /* ── SECTION SHARED ── */
-  section { padding: 5.5rem 6%; }
+  section { padding: 5rem 6%; }
   .section-label {
     display: inline-flex; align-items: center; gap: .5rem;
     color: var(--green); font-size: .78rem;
@@ -181,7 +238,7 @@
   .section-label::before { content: ''; display: block; width: 20px; height: 2px; background: var(--green); }
   h2.section-title {
     font-family: var(--ff-display);
-    font-size: clamp(1.9rem, 3.5vw, 2.8rem);
+    font-size: clamp(1.7rem, 4vw, 2.8rem);
     font-weight: 900; letter-spacing: -1px;
     line-height: 1.15; margin-bottom: 1rem;
   }
@@ -190,21 +247,24 @@
   /* ── STATS ROW ── */
   .stats-row {
     background: var(--green);
-    padding: 3rem 6%;
+    padding: 2.5rem 6%;
     display: flex; gap: 0; overflow: hidden;
+    flex-wrap: wrap;
   }
   .stat-item {
     flex: 1; text-align: center;
     border-right: 1px solid rgba(255,255,255,.2);
     padding: 1rem 0;
+    min-width: 120px;
   }
   .stat-item:last-child { border-right: none; }
   .stat-num {
     font-family: var(--ff-display);
-    font-size: 2.8rem; font-weight: 900; color: #fff;
+    font-size: clamp(1.8rem, 4vw, 2.8rem);
+    font-weight: 900; color: #fff;
     line-height: 1;
   }
-  .stat-label { color: rgba(255,255,255,.75); font-size: .85rem; font-weight: 500; margin-top: .3rem; }
+  .stat-label { color: rgba(255,255,255,.75); font-size: .8rem; font-weight: 500; margin-top: .3rem; }
 
   /* ── SERVICES ── */
   .services { background: var(--gray-light); }
@@ -270,7 +330,6 @@
     gap: 4rem; align-items: start;
   }
   .skill-bar-group { display: flex; flex-direction: column; gap: 1.4rem; }
-  .skill-bar-item {}
   .skill-bar-header {
     display: flex; justify-content: space-between; align-items: baseline;
     margin-bottom: .5rem;
@@ -358,6 +417,7 @@
     background: var(--green); color: #fff;
     display: flex; align-items: center; justify-content: center;
     font-weight: 700; font-size: .9rem;
+    flex-shrink: 0;
   }
   .testi-name { font-weight: 600; font-size: .9rem; }
   .testi-role { font-size: .78rem; color: var(--gray); }
@@ -367,7 +427,11 @@
   .contact-inner {
     display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start;
   }
-  .contact-info h2 { font-family: var(--ff-display); font-size: 2rem; font-weight: 900; margin-bottom: 1rem; }
+  .contact-info h2 {
+    font-family: var(--ff-display);
+    font-size: clamp(1.6rem, 3vw, 2rem);
+    font-weight: 900; margin-bottom: 1rem;
+  }
   .contact-info p { color: var(--gray); line-height: 1.75; margin-bottom: 2rem; }
   .contact-item {
     display: flex; align-items: center; gap: 1rem; margin-bottom: 1.2rem;
@@ -379,7 +443,8 @@
     font-size: 1.1rem; flex-shrink: 0;
   }
   .contact-item-text strong { display: block; font-size: .85rem; font-weight: 600; }
-  .contact-item-text span { font-size: .85rem; color: var(--gray); }
+  .contact-item-text span,
+  .contact-item-text a { font-size: .85rem; color: var(--gray); text-decoration: none; }
   .contact-form { display: flex; flex-direction: column; gap: 1rem; }
   .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
   .form-group { display: flex; flex-direction: column; gap: .4rem; }
@@ -390,6 +455,7 @@
     font-family: var(--ff-body); font-size: .9rem; color: var(--black);
     outline: none; transition: border-color .2s;
     background: var(--white);
+    width: 100%;
   }
   .form-group input:focus, .form-group textarea:focus, .form-group select:focus {
     border-color: var(--green);
@@ -402,10 +468,40 @@
     cursor: pointer; align-self: flex-start;
     transition: background .2s, transform .15s, box-shadow .2s;
     box-shadow: 0 4px 20px rgba(105,189,39,.3);
+    white-space: nowrap;
   }
   .form-submit:hover {
     background: var(--green-dark); transform: translateY(-2px);
     box-shadow: 0 8px 28px rgba(105,189,39,.4);
+  }
+
+  /* ── COMPANIES ── */
+  .companies-grid {
+    display: grid;
+    grid-template-columns: 500px 500px;
+    gap: 2.5rem;
+    justify-content: center;
+  }
+  .company-card {
+    display: flex; flex-direction: column; align-items: center; gap: 1.2rem;
+  }
+  .company-img-wrap {
+    width: 100%; border-radius: 16px; overflow: hidden;
+    border: 1.5px solid #e5e7eb;
+    box-shadow: 0 8px 32px rgba(0,0,0,.08);
+    transition: transform .25s, box-shadow .25s;
+  }
+  .company-img-wrap:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 16px 48px rgba(0,0,0,.12);
+  }
+  .company-img-wrap img {
+    width: 100%; height: 500px;
+    object-fit: cover; object-position: center top; display: block;
+  }
+  .company-name {
+    font-family: var(--ff-display);
+    font-size: 1.15rem; font-weight: 700; color: var(--black);
   }
 
   /* ── FOOTER ── */
@@ -418,7 +514,7 @@
   .footer-logo { font-family: var(--ff-display); color: #fff; font-size: 1.1rem; font-weight: 900; }
   .footer-logo span { color: var(--green); }
   footer p { font-size: .82rem; }
-  .footer-links { display: flex; gap: 1.5rem; }
+  .footer-links { display: flex; gap: 1.5rem; flex-wrap: wrap; }
   .footer-links a { color: rgba(255,255,255,.5); font-size: .82rem; text-decoration: none; transition: color .2s; }
   .footer-links a:hover { color: var(--green); }
 
@@ -434,16 +530,120 @@
   }
   .reveal.visible { opacity: 1; transform: translateY(0); }
 
-  /* ── RESPONSIVE ── */
+  /* =========================================
+     RESPONSIVE BREAKPOINTS
+     ========================================= */
+
+  /* Tablet: ≤900px */
   @media (max-width: 900px) {
-    .hero { grid-template-columns: 1fr; text-align: center; }
+    /* Nav */
+    .nav-links { display: none; }
+    .hamburger { display: flex; }
+    .nav-cta { display: none; }
+
+    /* Hero */
+    .hero {
+      grid-template-columns: 1fr;
+      text-align: center;
+      padding: 6rem 6% 3rem;
+      min-height: auto;
+    }
     .hero-desc { max-width: 100%; }
     .hero-actions { justify-content: center; }
     .hero-visual { display: none; }
-    .skills-wrapper, .contact-inner { grid-template-columns: 1fr; gap: 2rem; }
+
+    /* Skills */
+    .skills-wrapper { grid-template-columns: 1fr; gap: 2.5rem; }
+
+    /* Tools grid */
+    .tools-grid { grid-template-columns: repeat(2, 1fr); }
+
+    /* Contact */
+    .contact-inner { grid-template-columns: 1fr; gap: 2.5rem; }
+    .form-row { grid-template-columns: 1fr 1fr; }
+
+    /* Companies */
+    .companies-grid {
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+    }
+    .company-img-wrap img { height: 280px; }
+
+    /* Stats row */
+    .stat-item { min-width: 50%; border-bottom: 1px solid rgba(255,255,255,.15); }
+    .stat-item:nth-child(2n) { border-right: none; }
+    .stat-item:nth-child(3), .stat-item:nth-child(4) { border-bottom: none; }
+  }
+
+  /* Mobile: ≤600px */
+  @media (max-width: 600px) {
+    nav { padding: .9rem 5%; }
+
+    /* Hero */
+    .hero { padding: 5.5rem 5% 3rem; }
+    .hero h1 { font-size: 2.4rem; }
+    .hero-badge { font-size: .72rem; }
+    .hero-desc { font-size: .95rem; }
+    .btn-primary, .btn-outline {
+      padding: .75rem 1.5rem;
+      font-size: .88rem;
+    }
+    .hero-actions { flex-direction: column; align-items: center; }
+
+    /* Section padding */
+    section { padding: 3.5rem 5%; }
+    .section-desc { margin-bottom: 2rem; }
+
+    /* Stats row */
+    .stats-row { padding: 2rem 5%; }
+    .stat-item { min-width: 50%; }
+
+    /* Services */
+    .services-grid { grid-template-columns: 1fr; }
+    .service-card { padding: 1.5rem; }
+
+    /* Timeline */
+    .timeline::before { left: 14px; }
+    .timeline-item { padding-left: 44px; }
+    .timeline-dot { left: 4px; width: 20px; height: 20px; }
+    .timeline-item h3 { font-size: .95rem; }
+    .timeline-item p { font-size: .85rem; }
+
+    /* Skills */
+    .tools-grid { grid-template-columns: 1fr 1fr; }
+    .tool-pill { font-size: .78rem; padding: .65rem .8rem; }
+
+    /* Projects */
+    .projects-grid { grid-template-columns: 1fr; }
+    .project-thumb { height: 160px; }
+
+    /* Testimonials */
+    .testi-grid { grid-template-columns: 1fr; }
+
+    /* Contact */
     .form-row { grid-template-columns: 1fr; }
-    .nav-links { display: none; }
-    #companies .reveal > div { grid-template-columns: 1fr; }
+    .form-submit { width: 100%; justify-content: center; align-self: stretch; }
+    .contact-info p { font-size: .9rem; }
+
+    /* Companies */
+    .companies-grid { grid-template-columns: 1fr; gap: 2rem; }
+    .company-img-wrap img { height: 240px; }
+
+    /* Footer */
+    footer {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 1rem;
+      padding: 1.5rem 5%;
+    }
+    .footer-links { gap: 1rem; }
+  }
+
+  /* Very small: ≤380px */
+  @media (max-width: 380px) {
+    .hero h1 { font-size: 2rem; letter-spacing: -1px; }
+    .tools-grid { grid-template-columns: 1fr; }
+    h2.section-title { font-size: 1.6rem; }
   }
 </style>
 </head>
@@ -461,7 +661,21 @@
     <li><a href="#contact">Contact</a></li>
   </ul>
   <a href="https://api.whatsapp.com/send?phone=923410637563" target="_blank" rel="noopener noreferrer" class="nav-cta">Hire Me</a>
+  <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+    <span></span><span></span><span></span>
+  </button>
 </nav>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#services" class="mobile-nav-link">Services</a>
+  <a href="#experience" class="mobile-nav-link">Experience</a>
+  <a href="#skills" class="mobile-nav-link">Skills</a>
+  <a href="#projects" class="mobile-nav-link">Projects</a>
+  <a href="#companies" class="mobile-nav-link">Companies</a>
+  <a href="#contact" class="mobile-nav-link">Contact</a>
+  <a href="https://api.whatsapp.com/send?phone=923410637563" target="_blank" rel="noopener noreferrer" class="mobile-cta">Hire Me →</a>
+</div>
 
 <!-- HERO -->
 <section class="hero" id="home">
@@ -478,14 +692,11 @@
   </div>
   <div class="hero-visual">
     <div class="hero-photo-wrap">
-      <!-- ✅ REPLACE "your-photo.jpg" with your actual image filename -->
-      <!-- Make sure the image file is uploaded to the same folder as this index.html on GitHub -->
       <img
         src="umair.jpg"
         alt="Muhammad Umair SEO Executive"
         onerror="this.style.display='none'; this.parentElement.querySelector('.hero-fallback').style.display='flex';"
       />
-      <!-- Fallback shown if image fails to load -->
       <div class="hero-fallback" style="display:none; position:absolute; inset:0; align-items:center; justify-content:center; flex-direction:column; gap:.5rem;">
         <div style="font-family:'Playfair Display',serif; font-size:5.5rem; font-weight:900; color:#69bd27; line-height:1;">MU</div>
         <div style="background:#fff; padding:.4rem 1rem; border-radius:50px; font-size:.78rem; font-weight:600; box-shadow:0 2px 12px rgba(0,0,0,.1);">Muhammad Umair</div>
@@ -573,30 +784,30 @@
   <div class="timeline reveal">
     <div class="timeline-item">
       <div class="timeline-dot"></div>
-      <div class="timeline-meta">Sept 2023 - Jul 2025</div>
+      <div class="timeline-meta">Sept 2023 – Jul 2025</div>
       <h3>SEO Executive</h3>
       <div class="company">Tri Technologies</div>
       <p>At Tri Technologies, I contributed to outreach campaigns, competitor analysis, and website audits. I assisted in content planning, page layout optimization, and PR outreach (including HARO). I also worked on Wikipedia page creation for brands and individuals and supported client reporting using tools like Google Search Console and Google Analytics.</p>
-    <div class="company">Feb 2025 - (Project Supervisor)</div>
-     <p>At Tri Technologies, I contributed to outreach campaigns, competitor analysis, and website audits. I assisted in content planning, page layout optimization, and PR outreach (including HARO). I also worked on Wikipedia page creation for brands and individuals and supported client reporting using tools like Google Search Console and Google Analytics.</p>
+      <div class="company" style="margin-top:.7rem;">Feb 2025 – (Project Supervisor)</div>
+      <p>At Tri Technologies, I contributed to outreach campaigns, competitor analysis, and website audits. I assisted in content planning, page layout optimization, and PR outreach (including HARO). I also worked on Wikipedia page creation for brands and individuals and supported client reporting using tools like Google Search Console and Google Analytics.</p>
     </div>
-       <div class="timeline-item">
+    <div class="timeline-item">
       <div class="timeline-dot"></div>
-      <div class="timeline-meta">Mar 2024 - Oct 2024</div>
-        <h3>SEO Executive (White-Label)</h3>
+      <div class="timeline-meta">Mar 2024 – Oct 2024</div>
+      <h3>SEO Executive (White-Label)</h3>
       <div class="company">Veltio Digital</div>
       <p>As a white-label SEO expert, I handled SEO strategies for clients across diverse niches such as Montessori, orthodontics, waterproofing, author websites, and digital agencies. I performed in-depth on-page audits, crafted keyword-aligned content strategies, executed high-quality link-building campaigns, and conducted technical SEO audits to enhance performance and rankings.</p>
     </div>
-       <div class="timeline-item">
+    <div class="timeline-item">
       <div class="timeline-dot"></div>
-      <div class="timeline-meta">Sep 2024 - Present</div>
-       <h3>Offpage SEO Specialist</h3>
+      <div class="timeline-meta">Sep 2024 – Present</div>
+      <h3>Offpage SEO Specialist</h3>
       <div class="company">Arc View (Remote)</div>
       <p>Managed high-authority link-building campaigns, guest posting outreach, and blogger partnerships to improve SEO performance and organic growth. Developed customized backlink strategies while ensuring quality, relevance, and compliance with SEO standards.</p>
     </div>
     <div class="timeline-item">
       <div class="timeline-dot"></div>
-      <div class="timeline-meta">May 2023 - Jul 2023</div>
+      <div class="timeline-meta">May 2023 – Jul 2023</div>
       <h3>SEO Internship</h3>
       <div class="company">FulFillit.pk</div>
       <p>My SEO journey began at FulFillit.pk, where I built a solid foundation in search engine optimization. I worked on off-page strategies like link building and guest posting, gained experience in on-page SEO, keyword research, and content optimization, and developed a strong understanding of SEO fundamentals.</p>
@@ -721,18 +932,18 @@
     <h2 class="section-title">Companies that worked</h2>
     <p class="section-desc">I've had the opportunity to work with Veltio Digital and Tri Technologies, where I supported their clients by providing comprehensive SEO services, strategic outreach, and digital marketing solutions to enhance online visibility and drive business growth.</p>
   </div>
-  <div class="reveal" style="display:grid; grid-template-columns:500px 500px; gap:2.5rem; justify-content:center;">
-    <div style="display:flex; flex-direction:column; align-items:center; gap:1.2rem;">
-      <div style="width:100%; border-radius:16px; overflow:hidden; border:1.5px solid #e5e7eb; box-shadow:0 8px 32px rgba(0,0,0,.08); transition:transform .25s, box-shadow .25s;" onmouseover="this.style.transform='translateY(-5px)';this.style.boxShadow='0 16px 48px rgba(0,0,0,.12)'" onmouseout="this.style.transform='translateY(0)';this.style.boxShadow='0 8px 32px rgba(0,0,0,.08)'">
-        <img src="tri-technologies.jpg" alt="Tri Technologies" style="width:100%; height:500px; object-fit:cover; object-position:center top; display:block;" />
+  <div class="companies-grid reveal">
+    <div class="company-card">
+      <div class="company-img-wrap">
+        <img src="tri-technologies.jpg" alt="Tri Technologies" />
       </div>
-      <h3 style="font-family:var(--ff-display); font-size:1.15rem; font-weight:700; color:var(--black);">Tri Technologies</h3>
+      <h3 class="company-name">Tri Technologies</h3>
     </div>
-    <div style="display:flex; flex-direction:column; align-items:center; gap:1.2rem;">
-      <div style="width:100%; border-radius:16px; overflow:hidden; border:1.5px solid #e5e7eb; box-shadow:0 8px 32px rgba(0,0,0,.08); transition:transform .25s, box-shadow .25s;" onmouseover="this.style.transform='translateY(-5px)';this.style.boxShadow='0 16px 48px rgba(0,0,0,.12)'" onmouseout="this.style.transform='translateY(0)';this.style.boxShadow='0 8px 32px rgba(0,0,0,.08)'">
-        <img src="veltio-digital.jpg" alt="Veltio Digital" style="width:100%; height:500px; object-fit:cover; object-position:center top; display:block;" />
+    <div class="company-card">
+      <div class="company-img-wrap">
+        <img src="veltio-digital.jpg" alt="Veltio Digital" />
       </div>
-      <h3 style="font-family:var(--ff-display); font-size:1.15rem; font-weight:700; color:var(--black);">Veltio Digital</h3>
+      <h3 class="company-name">Veltio Digital</h3>
     </div>
   </div>
 </section>
@@ -769,12 +980,12 @@
     </div>
     <div class="testi-card">
       <div class="stars">★★★★★</div>
-      <p class="testi-quote">"Working with Muhammad umair on our Wikipedia presence was seamless. He handled the sourcing, writing, and submission — the page has been live and stable ever since."</p>
+      <p class="testi-quote">"Working with Muhammad Umair on our Wikipedia presence was seamless. He handled the sourcing, writing, and submission — the page has been live and stable ever since."</p>
       <div class="testi-author">
         <div class="testi-avatar">RK</div>
         <div>
           <div class="testi-name">Zeeshan A.</div>
-          <div class="testi-role">Markting Manager, Stampaprints Packaging Company USA</div>
+          <div class="testi-role">Marketing Manager, Stampaprints Packaging Company USA</div>
         </div>
       </div>
     </div>
@@ -799,9 +1010,7 @@
         <div class="contact-item-icon">📞</div>
         <div class="contact-item-text">
           <strong>Phone</strong>
-          <a href="tel:+923410637563" class="phone-link">
-            <span>+92 341 0637563</span>
-          </a>
+          <a href="tel:+923410637563"><span>+92 341 0637563</span></a>
         </div>
       </div>
       <div class="contact-item">
@@ -864,24 +1073,39 @@
 </footer>
 
 <script>
-  // Scroll reveal
+  // ── Hamburger menu toggle ──
+  const hamburger = document.getElementById('hamburger');
+  const mobileMenu = document.getElementById('mobileMenu');
+
+  hamburger.addEventListener('click', () => {
+    hamburger.classList.toggle('open');
+    mobileMenu.classList.toggle('open');
+    document.body.style.overflow = mobileMenu.classList.contains('open') ? 'hidden' : '';
+  });
+
+  // Close mobile menu when a link is clicked
+  document.querySelectorAll('.mobile-nav-link, .mobile-cta').forEach(link => {
+    link.addEventListener('click', () => {
+      hamburger.classList.remove('open');
+      mobileMenu.classList.remove('open');
+      document.body.style.overflow = '';
+    });
+  });
+
+  // ── Scroll reveal ──
   const reveals = document.querySelectorAll('.reveal');
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('visible');
-      }
+      if (entry.isIntersecting) entry.target.classList.add('visible');
     });
-  }, { threshold: 0.12 });
+  }, { threshold: 0.08 });
   reveals.forEach(el => observer.observe(el));
 
-  // Skill bars animate on view
+  // ── Skill bars animate on view ──
   const bars = document.querySelectorAll('.skill-bar-fill');
   const barObserver = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.style.animationPlayState = 'running';
-      }
+      if (entry.isIntersecting) entry.target.style.animationPlayState = 'running';
     });
   }, { threshold: 0.5 });
   bars.forEach(bar => {
